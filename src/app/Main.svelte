@@ -1,9 +1,8 @@
 <script>
+import Globe from "./globe/Globe.svelte";
 </script>
 
-<div class="body">
-    Hello, World!
-</div>
+<Globe></Globe>
 
 <style type="text/scss">
     .body {
