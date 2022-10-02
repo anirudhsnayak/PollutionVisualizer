@@ -1,17 +1,8 @@
 <script>
-import Globe from "./globe/Globe.svelte";
+    import GlobeDisplay from "./globe/GlobeDisplay.svelte";
 </script>
 
-<Globe></Globe>
+<GlobeDisplay></GlobeDisplay>
 
-<style type="text/scss">
-    .body {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        min-height: 100%;
-        width: 100%;
-        top: 0; left: 0;
-    }
-</style>
+<style type="text/scss"></style>
 
