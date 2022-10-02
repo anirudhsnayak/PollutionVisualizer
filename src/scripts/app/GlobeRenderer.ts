@@ -1,5 +1,6 @@
 import * as THREE from '../../scripts/utils/three.js';
-import type GlobeData from './GlobeData';
+import type GlobeData from '../data/GlobeData';
+import type GlobeInputData from '../data/GlobeInputData';
 import DataUtils from '../utils/DataUtils';
 export default class GlobeRenderer{
     static WIDTH: number; static HEIGHT: number;
@@ -7,11 +8,15 @@ export default class GlobeRenderer{
     static camera : THREE.PerspectiveCamera;
     static renderer = new THREE.WebGLRenderer();
     static globe: THREE.Mesh;
+    
+    static cameraBasePosition = new THREE.Vector3(0, 0, 5);
+    
 
     static render(globeData: GlobeData){
         this.renderer.render( this.scene, this.camera );
-        //console.log(globeData.eulerRotation);
-        DataUtils.assignRotation(this.globe.rotation, globeData.eulerRotation);
+        DataUtils.assignVector3(this.globe.rotation, globeData.rotation);
+        let cameraPosition = this.cameraBasePosition.clone().multiplyScalar(globeData.zoom); //if expensive, then just change when zoom changes
+        DataUtils.assignVector3(this.camera.position, cameraPosition);
     }
      
     static init(attach: HTMLElement, width: number, height: number) {
@@ -21,7 +26,6 @@ export default class GlobeRenderer{
         this.globe = this.createGlobe();
         this.scene.add( this.globe );
         attach.appendChild( this.renderer.domElement );
-        this.camera.position.z = 5;
     }
 
     static createGlobe(){
