@@ -4,6 +4,7 @@ import type GlobeInputData from '../data/GlobeInputData';
 import DataUtils from '../../utils/DataUtils';
 export default class GlobeRenderer{
     static WIDTH: number; static HEIGHT: number;
+    static RADIUS: number = 2;
     static scene = new THREE.Scene();
     static camera : THREE.PerspectiveCamera;
     static renderer = new THREE.WebGLRenderer();
@@ -30,7 +31,7 @@ export default class GlobeRenderer{
 
     static createGlobe(){
         let globe = new THREE.Mesh(
-            new THREE.SphereGeometry(2, 64, 64),
+            new THREE.SphereGeometry(this.RADIUS, 64, 64),
             new THREE.MeshBasicMaterial({
                 color: 0x00ff00,
                 wireframe: true
