@@ -1,8 +1,7 @@
 import * as THREE from '../../utils/three.js';
 import type GlobeData from '../data/GlobeData';
-import type GlobeInputData from '../data/GlobeInputData';
 import DataUtils from '../../utils/DataUtils';
-import GlobeSurfaceRender from './GlobeSurfaceRenderer.js';
+import GlobeSurfaceRender from './surface/GlobeSurfaceRenderer.js';
 import MathUtils from '../../utils/MathUtils.js';
 export default class GlobeRenderer{
     static WIDTH: number; static HEIGHT: number; //TODO: change naming convention
@@ -36,7 +35,6 @@ export default class GlobeRenderer{
                 wireframe: true
             })
         );
-        //add globe texture to globe
         let texture = new THREE.TextureLoader().load( 'data/textures/earth.jpg' );
         let material = new THREE.MeshBasicMaterial( { map: texture } );
         globe.material = material;
@@ -48,5 +46,9 @@ export default class GlobeRenderer{
         cameraBasePosition.multiplyScalar(globeData.zoom); //if expensive, then just change when zoom changes
         DataUtils.assignVector3(this.camera.position, cameraBasePosition);
         this.camera.lookAt(0, 0, 0);
+    }
+
+    static linkHeatmapCanvas(heatmapCanvas: HTMLCanvasElement){
+        GlobeSurfaceRender.linkHeatmapCanvas(heatmapCanvas);
     }
 }
