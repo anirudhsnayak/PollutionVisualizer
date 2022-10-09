@@ -1,25 +1,21 @@
-import type VectorField from "../data/VectorField";
+import VectorField from "../data/VectorField";
 import * as THREE from "../../utils/three.js";
-export default class GlobeSurfaceRender{
-    static INTERPOLATION_POINTS: number = 50;
+import MathUtils from "../../utils/MathUtils";
+export default class GlobeSurfaceRenderer{
+    static get INTERPOLATION_POINTS(){return 50;}
+    static get VECTOR_FIELD_COLOR(){return 0xff0000;}
     static vectorField: VectorField;
     static radius: number;
-    static color: THREE.Color;
-    static initialize(radius, color){
+    static init(radius){
         this.radius = radius;
+        this.vectorField = new VectorField();
     }
     static renderCurves(){
+        let renderedCurves = [];
         for(let vector of this.vectorField.vectors){
             //create a THREE point
-            let startPoint = new THREE.Vector3();
-            startPoint.x = this.radius * Math.sin(vector.theta) * Math.cos(vector.phi);
-            startPoint.y = this.radius * Math.sin(vector.theta) * Math.sin(vector.phi);
-            startPoint.z = this.radius * Math.cos(vector.theta);
-            let curveArcLength =  this.radius = vector.magnitude;
-            let endPoint = new THREE.Vector3();
-            endPoint.x = startPoint.x + curveArcLength * Math.sin(vector.directionTheta) * Math.cos(vector.directionPhi);
-            endPoint.y = startPoint.y + curveArcLength * Math.sin(vector.directionTheta) * Math.sin(vector.directionPhi);
-            endPoint.z = startPoint.z + curveArcLength * Math.cos(vector.directionTheta);
+            let startPoint = MathUtils.getPointOnSphere(vector.theta, vector.phi, this.radius);
+            let endPoint = MathUtils.getPointOnSphere(vector.theta+vector.directionTheta, vector.phi+vector.directionPhi, this.radius);
             let curve = new THREE.Curve();
             curve.getPoint = function(t){
                 let point = new THREE.Vector3();
@@ -30,8 +26,10 @@ export default class GlobeSurfaceRender{
             }
             let curveGeometry = new THREE.Geometry();
             curveGeometry.vertices = curve.getPoints(this.INTERPOLATION_POINTS);
-            let curveMaterial = new THREE.LineBasicMaterial({color: this.color});
-            //finish
+            let curveMaterial = new THREE.LineBasicMaterial({color: this.VECTOR_FIELD_COLOR});
+            let curveObject = new THREE.Line(curveGeometry, curveMaterial);
+            renderedCurves.push(curveObject);
         }
+        return renderedCurves;
     }
 }

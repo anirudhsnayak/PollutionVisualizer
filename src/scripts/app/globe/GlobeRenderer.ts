@@ -2,22 +2,22 @@ import * as THREE from '../../utils/three.js';
 import type GlobeData from '../data/GlobeData';
 import type GlobeInputData from '../data/GlobeInputData';
 import DataUtils from '../../utils/DataUtils';
+import GlobeSurfaceRender from './GlobeSurfaceRenderer.js';
+import MathUtils from '../../utils/MathUtils.js';
 export default class GlobeRenderer{
-    static WIDTH: number; static HEIGHT: number;
-    static RADIUS: number = 2;
+    static WIDTH: number; static HEIGHT: number; //TODO: change naming convention
+    static get RADIUS(){return 1;}
+    static get CAMERA_BASE_RADIUS(){return 3;}
     static scene = new THREE.Scene();
     static camera : THREE.PerspectiveCamera;
     static renderer = new THREE.WebGLRenderer();
     static globe: THREE.Mesh;
     
-    static cameraBasePosition = new THREE.Vector3(0, 0, 5);
-    
-
     static render(globeData: GlobeData){
+        //DataUtils.assignVector3(this.globe.rotation, globeData.cameraRotation);
+        this.updateCameraPosition(globeData);
+        this.updateSurfaceRender(globeData);
         this.renderer.render( this.scene, this.camera );
-        DataUtils.assignVector3(this.globe.rotation, globeData.rotation);
-        let cameraPosition = this.cameraBasePosition.clone().multiplyScalar(globeData.zoom); //if expensive, then just change when zoom changes
-        DataUtils.assignVector3(this.camera.position, cameraPosition);
     }
      
     static init(attach: HTMLElement, width: number, height: number) {
@@ -27,6 +27,7 @@ export default class GlobeRenderer{
         this.globe = this.createGlobe();
         this.scene.add( this.globe );
         attach.appendChild( this.renderer.domElement );
+        GlobeSurfaceRender.init(this.RADIUS+0.1);
     }
 
     static createGlobe(){
@@ -44,4 +45,17 @@ export default class GlobeRenderer{
         return globe;
     }
 
+    static updateCameraPosition(globeData: GlobeData){
+        //create red sphere 
+        let cameraBasePosition = MathUtils.getAbsolutePointOnSphere(globeData.cameraRotation.x, globeData.cameraRotation.y, this.CAMERA_BASE_RADIUS);
+        cameraBasePosition.multiplyScalar(globeData.zoom); //if expensive, then just change when zoom changes
+        DataUtils.assignVector3(this.camera.position, cameraBasePosition);
+        this.camera.lookAt(0, 0, 0);
+    }
+    static updateSurfaceRender(globeData: GlobeData){
+        let curves = GlobeSurfaceRender.renderCurves();
+        for(let curve of curves){
+            this.scene.add(curve);
+        }
+    }
 }

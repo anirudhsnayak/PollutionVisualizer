@@ -7,7 +7,7 @@ export default class GlobeInput{
     static mouseDown = false;
     static dragMousePos = {x: 0, y: 0};
     static curMousePos = {x: 0, y: 0};
-    static originalGlobeRotation = {x: 0, y: 0};
+    static originalCameraRotation = {x: 0, y: 0};
     static get DRAG_COEFF(){return 0.003;} //budget const
 
     static zoom = 1;
@@ -28,23 +28,24 @@ export default class GlobeInput{
         this.globeData = globeData;
         let globeInputData = new GlobeInputData();
         globeInputData.zoom = this.zoom;
-        let globeRotation2d = {x: this.originalGlobeRotation.x, y: this.originalGlobeRotation.y};
+        let cameraRotation2d = {x: this.originalCameraRotation.x, y: this.originalCameraRotation.y};
         if(this.mouseDown){
-            let globeRotationDelta = {x: this.curMousePos.y - this.dragMousePos.y, y: this.curMousePos.x - this.dragMousePos.x}; //swapped x and y to coincide with mouse movement
-            globeRotationDelta.x *= this.DRAG_COEFF*this.zoom*this.ZOOM_ACTION_COEFF; 
-            globeRotationDelta.y *= this.DRAG_COEFF*this.zoom*this.ZOOM_ACTION_COEFF;
-            globeRotation2d.x += globeRotationDelta.x; globeRotation2d.y += globeRotationDelta.y;
+            let cameraRotationDelta = {x: this.curMousePos.x - this.dragMousePos.x, y: this.curMousePos.y - this.dragMousePos.y}; 
+            cameraRotationDelta.x *= this.DRAG_COEFF*this.zoom*this.ZOOM_ACTION_COEFF; 
+            cameraRotationDelta.y *= this.DRAG_COEFF*this.zoom*this.ZOOM_ACTION_COEFF;
+            cameraRotation2d.x += cameraRotationDelta.x; cameraRotation2d.y += cameraRotationDelta.y;
+            cameraRotation2d.y = Math.min(Math.max(cameraRotation2d.y, -Math.PI/2), Math.PI/2);
         } 
-        globeInputData.rotation2d = globeRotation2d;
+        globeInputData.rotation2d = cameraRotation2d;
         return globeInputData;
     }
     static onMouseDown(event: MouseEvent){
         this.dragMousePos = {x: event.clientX, y: event.clientY};
-        this.originalGlobeRotation =  {x: this.globeData.rotation.x, y: this.globeData.rotation.y};
+        this.originalCameraRotation =  {x: this.globeData.cameraRotation.x, y: this.globeData.cameraRotation.y};
         this.mouseDown = true;
     }
     static onMouseUp(event: MouseEvent){
-        this.originalGlobeRotation =  {x: this.globeData.rotation.x, y: this.globeData.rotation.y};
+        this.originalCameraRotation =  {x: this.globeData.cameraRotation.x, y: this.globeData.cameraRotation.y};
         this.mouseDown = false;
     }
     static onMouseMove(event: MouseEvent){

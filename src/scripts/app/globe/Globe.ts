@@ -1,6 +1,7 @@
 import GlobeInput from "./GlobeInput";
 import GlobeRenderer from "./GlobeRenderer";
 import GlobeData from "../data/GlobeData";
+import type GlobeInputData from "../data/GlobeInputData";
 
 export default class Globe{
     static globeData: GlobeData;
@@ -13,9 +14,12 @@ export default class Globe{
     static update(){ 
         requestAnimationFrame(()=>{Globe.update()}); //have to use lambda to keep 'this' context
         let globeInputData = GlobeInput.update(this.globeData);
-        this.globeData.rotation.x = globeInputData.rotation2d.x;
-        this.globeData.rotation.y = globeInputData.rotation2d.y;
-        this.globeData.zoom = globeInputData.zoom;
+        this.updateData(globeInputData);
         GlobeRenderer.render(this.globeData);
+    }
+    static updateData(globeInputData: GlobeInputData){
+        this.globeData.cameraRotation.x = globeInputData.rotation2d.x;
+        this.globeData.cameraRotation.y = globeInputData.rotation2d.y;
+        this.globeData.zoom = globeInputData.zoom;
     }
 }
