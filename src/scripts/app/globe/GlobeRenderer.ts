@@ -14,9 +14,7 @@ export default class GlobeRenderer{
     static globe: THREE.Mesh;
     
     static render(globeData: GlobeData){
-        //DataUtils.assignVector3(this.globe.rotation, globeData.cameraRotation);
         this.updateCameraPosition(globeData);
-        this.updateSurfaceRender(globeData);
         this.renderer.render( this.scene, this.camera );
     }
      
@@ -27,7 +25,7 @@ export default class GlobeRenderer{
         this.globe = this.createGlobe();
         this.scene.add( this.globe );
         attach.appendChild( this.renderer.domElement );
-        GlobeSurfaceRender.init(this.RADIUS+0.1);
+        GlobeSurfaceRender.init(this.RADIUS, this.scene);
     }
 
     static createGlobe(){
@@ -46,16 +44,9 @@ export default class GlobeRenderer{
     }
 
     static updateCameraPosition(globeData: GlobeData){
-        //create red sphere 
-        let cameraBasePosition = MathUtils.getAbsolutePointOnSphere(globeData.cameraRotation.x, globeData.cameraRotation.y, this.CAMERA_BASE_RADIUS);
+        let cameraBasePosition = MathUtils.getPointOnSphere(-globeData.cameraRotation.x, globeData.cameraRotation.y, this.CAMERA_BASE_RADIUS);
         cameraBasePosition.multiplyScalar(globeData.zoom); //if expensive, then just change when zoom changes
         DataUtils.assignVector3(this.camera.position, cameraBasePosition);
         this.camera.lookAt(0, 0, 0);
-    }
-    static updateSurfaceRender(globeData: GlobeData){
-        let curves = GlobeSurfaceRender.renderCurves();
-        for(let curve of curves){
-            this.scene.add(curve);
-        }
     }
 }

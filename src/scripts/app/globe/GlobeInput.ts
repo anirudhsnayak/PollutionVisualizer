@@ -49,6 +49,9 @@ export default class GlobeInput{
         this.mouseDown = false;
     }
     static onMouseMove(event: MouseEvent){
+        if(event.buttons != 1 && this.mouseDown){
+           this.onMouseUp(event);
+        }
         this.curMousePos = {x: event.clientX, y: event.clientY};
     }
     static onMouseWheel(event: WheelEvent){
