@@ -1,5 +1,5 @@
 <script>
-import Globe from '../../scripts/app/Globe';
+import Globe from '../../scripts/app/globe/Globe';
 import { onMount } from 'svelte';
 onMount(()=>{
     let sideLength = Math.min(window.innerWidth, window.innerHeight);

@@ -1,7 +1,7 @@
-import * as THREE from '../../scripts/utils/three.js';
+import * as THREE from '../../utils/three.js';
 import type GlobeData from '../data/GlobeData';
 import type GlobeInputData from '../data/GlobeInputData';
-import DataUtils from '../utils/DataUtils';
+import DataUtils from '../../utils/DataUtils';
 export default class GlobeRenderer{
     static WIDTH: number; static HEIGHT: number;
     static scene = new THREE.Scene();
