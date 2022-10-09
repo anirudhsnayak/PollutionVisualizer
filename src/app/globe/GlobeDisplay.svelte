@@ -1,7 +1,7 @@
 <script>
 import Globe from '../../scripts/app/globe/Globe';
 import { onMount } from 'svelte';
-    import GlobeSurfaceRenderer from '../../scripts/app/globe/surface/GlobeSurfaceRenderer';
+import GlobeRenderer from '../../scripts/app/globe/GlobeRenderer';
 onMount(()=>{
     let globe = document.getElementById('globe');
     Globe.init(globe, window.innerWidth, window.innerHeight);

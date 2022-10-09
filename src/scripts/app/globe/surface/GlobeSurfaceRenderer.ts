@@ -1,6 +1,4 @@
 import type * as THREE from "../../../utils/three.js";
-import MathUtils from "../../../utils/MathUtils";
-import type DirectionVector from "../../data/DirectionVector";
 import GlobeHeatmapRenderer from "./GlobeHeatmapRenderer";
 import GlobeVectorRenderer from "./GlobeVectorRenderer";
 import SurfaceData from "./SurfaceData.js";
