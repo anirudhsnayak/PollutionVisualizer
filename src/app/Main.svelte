@@ -1,8 +1,15 @@
 <script>
-import Globe from "./globe/Globe.svelte";
+    import Globe from "./globe/Globe.svelte";
+    import Visualizer from "./visualizer/Visualizer.svelte";
+    import Home from "./home/Home.svelte";
 </script>
 
-<Globe></Globe>
+<Home/>
+
+
+
+
+
 
 <style type="text/scss">
     .body {
