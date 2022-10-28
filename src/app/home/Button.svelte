@@ -2,14 +2,14 @@
 
 </script>
 
-<button on:click = {click}>3D Visualizer</button>
+<button>3D Visualizer</button>
 
 <style type="text/scss">
     button {
         background-color: #EEEEEE;
         color: #76A900;
         font-family: "Arvo";
-        font-size: 120px;
+        font-size: 110px;
         border-radius: 50px;
         opacity: 75%;
         padding: 50px;

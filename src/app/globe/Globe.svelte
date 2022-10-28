@@ -16,7 +16,6 @@ onMount(()=>{
 </script>
 
 <div id="globe"></div>
-test
 
 <style>
 

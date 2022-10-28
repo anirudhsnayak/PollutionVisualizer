@@ -51,7 +51,7 @@
     }
     #title {
         font-family: "Arvo";
-        font-size: 450px;
+        font-size: 325px;
         color: #042009;
         padding-left: 80px;
         position:relative;
@@ -61,17 +61,19 @@
     }
     #desc {
         font-family: "Arvo";
-        font-size: 80px;
+        font-size: 60px;
         color: #FFDFC6;
         padding-left: 80px;
         position:relative;
-        left: 1650px;
+        left: 1200px;
         opacity: 100%;
-        bottom: 450px;
+        bottom: 320px;
     }
     #button {
-        width: 865px;
+        width: 850px;
         margin: auto;
+        position: relative;
+        bottom: 20px;
     }
 
     
