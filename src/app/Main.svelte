@@ -1,34 +1,21 @@
 <script>
-    import Globe from "./globe/Globe.svelte";
-    import SideBar from "./visualizer/SideBarLeft.svelte";
-    import SideBarRight from "./visualizer/SideBarRight.svelte";
+    import Globe from "./visualizer/Globe.svelte";
     import Home from "./home/Home.svelte";
-    import GlobeDisplay from "./globe/GlobeDisplay.svelte";
+    import Router from "../scripts/app/router/Router";
+    let page = "home";
+    function updatePage(){
+        page = Router.page;
+    }
+    Router.link(updatePage);
 </script>
 
-<div id = "body">
-    <div class = "part">
-        <SideBar/>
-    </div>
-    
-    <div class= "part">
-        <GlobeDisplay></GlobeDisplay>
-    </div>
+{#if page == "home"}
+    <Home/>
+{/if}
+{#if page == "globe"}
+    <Globe/>
+{/if}
 
-    <div class = "part">
-        <SideBarRight/>
-    </div>
-    
-</div>
-
-
-<style type="text/scss">    #body {
-        height: 100%;
-    }
-    .part {
-        display:inline-block;
-        height: 100%;
-        vertical-align: top;
-    }
+<style type="text/scss">    
 </style>
 

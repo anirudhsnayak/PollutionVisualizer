@@ -7,7 +7,8 @@ onMount(()=>{
     let globe = document.getElementById('globe');
     let heatmapCanvas = document.getElementById('heatmap');
     GlobeRenderer.linkHeatmapCanvas(heatmapCanvas);
-    Globe.init(globe, window.innerWidth, window.innerHeight);
+    Globe.init(globe, window.innerWidth*0.85, window.innerHeight);
+    //TODO: fix the above hack
 });
 </script>
 <div id="globe"></div>

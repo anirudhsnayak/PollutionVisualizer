@@ -1,8 +1,8 @@
 <script>
-
+    import Router from "../../scripts/app/router/Router";
 </script>
 
-<button>3D Visualizer</button>
+<button on:click={Router.navigate("globe")}>3D Visualizer</button>
 
 <style type="text/scss">
     button {

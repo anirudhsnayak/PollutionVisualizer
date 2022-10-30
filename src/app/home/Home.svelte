@@ -8,7 +8,7 @@
         <h2 id = "nav-bar-text">Learn More</h2>
     </div>
     <div id = "main">
-        <img src = "images/mountains-1412683.png" alt = "bg image" id = "bg-image">
+        <img src = "images/mountains-1412683.png" alt = "bg" id = "bg-image">
         <h1 id = "title">Title</h1>
         <h1 id = "desc">Visualizing <br> pollution around <br> the world.</h1>
         <div id = "button"><Button/></div>
@@ -16,17 +16,17 @@
 </div>
 
 <style type="text/scss">
-    .body {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        min-height: 100%;
-        width: 100%;
-        top: 0; left: 0;
-        margin: 0px;
-        border: 0px;
-        padding: 0px;
-    }
+    // body {
+    //     display: flex;
+    //     flex-direction: column;
+    //     background-color: white;
+    //     min-height: 100%;
+    //     width: 100%;
+    //     top: 0; left: 0;
+    //     margin: 0px;
+    //     border: 0px;
+    //     padding: 0px;
+    // }
     #bg {
         background-color: rgba(118, 169, 0, 0.54);
         height: 100%;

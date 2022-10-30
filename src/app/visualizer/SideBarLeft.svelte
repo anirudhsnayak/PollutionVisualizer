@@ -1,9 +1,12 @@
 <script>
-    //this is where the globe page will go
+   import Router from "../../scripts/app/router/Router";
 </script>
 
 <div id = "sidebar">
-    <input type = "image" src = "images/home-icon.png" alt = "yes" id = "home">
+    <button on:click={Router.navigate("home")}>
+        
+    </button>
+    <img src = "images/home-icon.png" alt = "yes" id = "home">
 </div>
 
 <style type="text/scss">

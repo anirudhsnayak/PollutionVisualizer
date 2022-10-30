@@ -18,7 +18,7 @@
         width: 300px;
         background-color: gray;
         border-top-left-radius: 15px;
-        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
     }
 
     #pollutions {
