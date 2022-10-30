@@ -33,7 +33,7 @@
         top: 0;
     }
     .sidebar-left {
-        width: 20%;
+        width: 75px;
         left: 0;
     }
     .globe{
@@ -41,7 +41,7 @@
         overflow-y: hidden;
     }
     .sidebar-right {
-        width: 20%;
+        width: 300px;
         right: 0;
     }
 </style>

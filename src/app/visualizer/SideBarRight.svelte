@@ -25,7 +25,6 @@
         background-color: white;
         width: 280px;
         height: 300px;
-        margin:auto;
         position: relative;
         top: 100px;
         font-size: 30px;

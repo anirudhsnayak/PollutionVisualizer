@@ -3,10 +3,9 @@
 </script>
 
 <div id = "sidebar">
-    <button on:click={Router.navigate("home")}>
-        
+    <button on:click={()=>{Router.navigate("home")}}>
+        <img src = "images/home-icon.png" alt = "yes" id = "home">
     </button>
-    <img src = "images/home-icon.png" alt = "yes" id = "home">
 </div>
 
 <style type="text/scss">
