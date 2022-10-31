@@ -6,7 +6,6 @@ export default class Router{
         this.callback = callback;
     }
     static navigate(page: string){
-        console.log("worked?");
         this.page = page;
         this.callback();
     }
