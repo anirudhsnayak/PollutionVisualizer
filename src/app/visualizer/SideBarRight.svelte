@@ -2,17 +2,17 @@
     //this is where the globe page will go
     import GlobeDisplayManager from '../../scripts/app/globe/GlobeDisplayManager';
     let airPollutionActive = false;
-    let lightPollutionActive = false;
+    let oilPollutionActive = false;
     $: GlobeDisplayManager.toggleAirPollution(airPollutionActive);
-    $: GlobeDisplayManager.toggleLightPollution(lightPollutionActive);
+    $: GlobeDisplayManager.toggleOilPollution(oilPollutionActive);
 </script>
 
 <div id = "sidebar">
     <div id = "pollutions">
         <input bind:checked={airPollutionActive} type = "checkbox" id = "air-pollution" class = "air-pollution" name = "air-pollution">
         <label for = "air-pollution" class = "air-pollution">Air Pollution</label> <br> <br>
-        <input bind:checked={lightPollutionActive} type = "checkbox" id = "light-pollution" class = "light-pollution" name = "light-pollution">
-        <label for = "light-pollution" class = "light-pollution">Light Pollution</label>
+        <input bind:checked={oilPollutionActive} type = "checkbox" id = "oil-pollution" class = "oil-pollution" name = "oil-pollution">
+        <label for = "oil-pollution" class = "oil-pollution">Oil Pollution</label>
     </div>
 
 </div>
@@ -43,7 +43,7 @@
 
     }
 
-    .light-pollution {
+    .oil-pollution {
         display: inline-block;
         margin: auto;
         font-family: "Helvetica Light";

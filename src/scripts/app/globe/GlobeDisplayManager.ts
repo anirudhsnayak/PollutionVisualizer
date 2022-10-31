@@ -1,13 +1,16 @@
+import GlobeDataManager from "./GlobeDataManager";
+import GlobeHeatmapRenderer from "./surface/GlobeHeatmapRenderer";
 
 export default class GlobeDisplayManager{
     static toggleAirPollution(airPollutionActive: boolean){
+        console.log(GlobeDataManager.airPollutionHeatmapPoints);
         if(airPollutionActive){
-            //show air pollution
+            GlobeHeatmapRenderer.addHeatmapPoints(GlobeDataManager.airPollutionHeatmapPoints);
         }else{
-            //hide air pollution
+            //GlobeHeatmapRenderer.clearHeatmap();
         }
     }
-    static toggleLightPollution(lightPollutionActive: boolean){
+    static toggleOilPollution(oilPollutionActive: boolean){
     
     }
 }

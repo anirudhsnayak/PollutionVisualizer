@@ -13,20 +13,37 @@ export default class GlobeHeatmapRenderer{
         SurfaceData.scene.add(mesh);
 
         //DEBUG
-        //this.addHeatmapPoint(this.canvas.width*3/4, this.canvas.height/2, 100, "red");
+        //this.addHeatmapPoints([{x:this.canvas.width*3/4, y:this.canvas.height/2}]);
     }
     static linkHeatmapCanvas(canvas: HTMLCanvasElement){
         this.canvas = canvas;
         //DEBUG
-        // canvas.style.display = "block";
-        // canvas.style.border = "1px solid black";
+        canvas.style.display = "block";
+        canvas.style.border = "1px solid black";
     }
-    static addHeatmapPoint(x: number, y: number, radius: number, color: string){
+    static addHeatmapPoints(heatmapPoints){
         let ctx = this.canvas.getContext("2d");
-        let grd = ctx.createRadialGradient(x, y, 1, x, y, radius); //implementation may vary
-        grd.addColorStop(0, color);
-        grd.addColorStop(1, "rgba(255, 0, 0, 0)");
-        ctx.fillStyle = grd;
-        ctx.fillRect(0, 0, this.canvas.width, this.canvas.height); //may not work with more than one point
+        for(let i = 0; i < heatmapPoints.length; i++){
+            let heatmapPoint = heatmapPoints[i];
+            let grd = ctx.createRadialGradient(heatmapPoint.x, heatmapPoint.y, 1, heatmapPoint.x, heatmapPoint.y, 100); //implementation may vary
+            console.log(heatmapPoint.x); console.log(heatmapPoint.y);
+            grd.addColorStop(0, "red");
+            grd.addColorStop(1, "rgba(255, 0, 0, 0)");
+            ctx.fillStyle = grd;
+            ctx.fillRect(0, 0, this.canvas.width, this.canvas.height); 
+        }
+        //update globe
+        this.updateGlobe();
+    }
+    static clearHeatmap(){
+        let ctx = this.canvas.getContext("2d");
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.updateGlobe();
+    }
+    static updateGlobe(){
+        let texture = new THREE.Texture(this.canvas);
+        texture.needsUpdate = true;
+        let material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
+        SurfaceData.scene.children[1].material = material;
     }
 }
