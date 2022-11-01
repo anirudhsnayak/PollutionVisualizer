@@ -38,7 +38,7 @@
     }
     .globe{
         height: 100%;
-        overflow-y: hidden;
+        //overflow-y: hidden;
     }
     .sidebar-right {
         width: 300px;

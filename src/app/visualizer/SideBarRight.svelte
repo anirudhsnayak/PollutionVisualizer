@@ -3,8 +3,7 @@
     import GlobeDisplayManager from '../../scripts/app/globe/GlobeDisplayManager';
     let airPollutionActive = false;
     let oilPollutionActive = false;
-    $: GlobeDisplayManager.toggleAirPollution(airPollutionActive);
-    $: GlobeDisplayManager.toggleOilPollution(oilPollutionActive);
+    $: GlobeDisplayManager.togglePollution(airPollutionActive, oilPollutionActive);
 </script>
 
 <div id = "sidebar">
