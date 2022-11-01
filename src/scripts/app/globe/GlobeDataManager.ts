@@ -126,7 +126,7 @@ export default class GlobeDataManager{
             
             let x = oilPollutionPoint.lon/360*SurfaceData.CANVAS_TEXTURE_WIDTH;
             x+=SurfaceData.CANVAS_TEXTURE_WIDTH/2;
-            let y = oilPollutionPoint.lat/180*SurfaceData.CANVAS_TEXTURE_HEIGHT;
+            let y = -oilPollutionPoint.lat/180*SurfaceData.CANVAS_TEXTURE_HEIGHT;
             y+=SurfaceData.CANVAS_TEXTURE_HEIGHT/2;  
             //add point to matrix
             //clamp x and y to be within the bounds of the matrix

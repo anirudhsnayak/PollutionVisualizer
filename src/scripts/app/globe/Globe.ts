@@ -10,7 +10,6 @@ export default class Globe{
         this.globeData = new GlobeData();
         GlobeRenderer.init(globe, x, y);
         GlobeInput.handle(globe);
-        GlobeDataManager.init();
         this.update();
     }
     static update(){ 
