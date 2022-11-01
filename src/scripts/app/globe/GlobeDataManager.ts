@@ -3,8 +3,8 @@ export default class GlobeDataManager{
     static airPollutionHeatmapPoints = [];
     static oilPollutionHeatmapPoints = [];
     static init(){
-        // this.loadAirPollution();
-        // this.loadOilPollution();
+        this.loadAirPollution();
+        this.loadOilPollution();
     }
     static async loadAirPollution(){
         //load air pollution 
