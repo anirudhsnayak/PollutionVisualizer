@@ -11,8 +11,8 @@
             </button>
         </div>
         <div id = "main">
-            <img src = "images/mountains-1412683.png" alt = "bg" id = "bg-image">
-            <h1 id = "title">Title</h1>
+            <img src = "images/background-img.png" alt = "bg" id = "bg-image">
+            <h1 id = "title">Pollution3D</h1>
             <h1 id = "desc">Visualizing <br> pollution around <br> the world.</h1>
             <div id = "button"><Button/></div>
         </div>
@@ -44,17 +44,19 @@
         position: absolute;
         z-index: -1;
         width: 100%;
-        height: 100%;
+        height: 882px;
+        border: 0px;
+        padding: 0px;
     }
     #title {
         font-family: "Arvo";
-        font-size: 325px;
+        font-size: 175px;
         color: #042009;
         padding-left: 80px;
         position:relative;
         opacity: 100%;
         left: 50px;
-        top: 40px;
+        top: 60px;
     }
     #desc {
         font-family: "Arvo";
@@ -64,13 +66,13 @@
         position:relative;
         left: 1200px;
         opacity: 100%;
-        bottom: 320px;
+        bottom: 120px;
     }
     #button {
         width: 850px;
         margin: auto;
         position: relative;
-        bottom: 20px;
+        top: 75px;
     }
     #education-button {
         float: left;

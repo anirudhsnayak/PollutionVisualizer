@@ -8,7 +8,7 @@ export default class GlobeVectorRenderer{
     static renderedCurves = [];
     static arrowHeads = [];
     static init(){
-        this.addVector({theta: 4.2, phi: 0.6, directionTheta: 2.1, directionPhi: 0.25});
+        //this.addVector({theta: 4.2, phi: 0.6, directionTheta: 2.1, directionPhi: 0.25});
     }
     static addVector(vector: DirectionVector){
         let curve = new THREE.Curve();

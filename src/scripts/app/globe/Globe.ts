@@ -2,6 +2,7 @@ import GlobeInput from "./GlobeInput";
 import GlobeRenderer from "./GlobeRenderer";
 import GlobeData from "../data/GlobeData";
 import type GlobeInputData from "../data/GlobeInputData";
+import GlobeDataManager from "./GlobeDataManager";
 
 export default class Globe{
     static globeData: GlobeData;

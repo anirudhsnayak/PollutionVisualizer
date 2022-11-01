@@ -11,10 +11,9 @@
       </button>
       <div class="dropdown-content">
         <button on:click={()=>{Router.navigate("education-air")}}>Air Pollution</button>
-        <button on:click={()=>{Router.navigate("education-water")}}>Water Pollution</button>
+        <button on:click={()=>{Router.navigate("education-water")}}>Oil Spills</button>
       </div>
     </div>
-    <button on:click={()=>{Router.navigate("education-gallery")}}>Gallery</button>
   </div>
 
 <style type="text/scss">
